@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE DESIGN COMPANY | Fashion Meets Fragrance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- BRAND IDENTIFIERS & VARS --- */
+        :root {
+            --bg-cream: #F4F1EA;
+            --bg-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-muted: #555555;
+            --gold: #C5A880;
+            --gold-dark: #A4865E;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --border-light: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- GLOBAL EDITORIAL SECTION TITLE --- */
+        .section-header {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background-color: var(--gold);
+            margin-top: 15px;
+        }
+
+        /* --- 1. PREMIUM STICKY NAVIGATION BAR --- */
+        .navbar {
+            background-color: rgba(244, 241, 234, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 8px 0;
+            color: var(--text-muted);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-dark);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-utilities {
+            display: flex;
+            gap: 24px;
+            font-size: 1.05rem;
+        }
+
+        .nav-icon {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-icon:hover {
+            color: var(--gold);
+        }
+
+        .cart-indicator {
+            position: absolute;
+            top: -6px;
+            right: -9px;
+            background-color: var(--text-dark);
+            color: var(--bg-cream);
+            font-size: 0.6rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- 2. EDITORIAL HERO SPLIT --- */
+        .hero-section {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text-side {
+            max-width: 500px;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .scroll-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            color: var(--text-dark);
+            margin-top: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        .hero-mosaic-side {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 15px;
+            position: relative;
+        }
+
+        .mosaic-img {
+            background-color: #E2DDD5;
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .mosaic-img:hover {
+            transform: scale(1.02);
+        }
+
+        .m-1 { grid-column: 1 / 6; grid-row: 1 / 5; height: 180px; background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=400&q=80'); }
+        .m-2 { grid-column: 6 / 13; grid-row: 1 / 6; height: 240px; background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80'); }
+        .m-3 { grid-column: 1 / 7; grid-row: 5 / 10; height: 240px; background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=400&q=80'); }
+        .m-4 { grid-column: 7 / 13; grid-row: 6 / 10; height: 180px; background-image: url('https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=400&q=80'); }
+
+        /* --- 3. BRAND STATEMENT & ABOUT --- */
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--bg-white);
+            margin-top: 40px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-statement {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .about-statement span {
+            color: var(--gold);
+        }
+
+        .about-details {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .about-details p {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .about-row-img {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .about-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--bg-cream);
+        }
+
+        /* --- 4. SERVICES CLEAN INTERACTION --- */
+        .services-section {
+            padding: 100px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 80px;
+            row-gap: 20px;
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+        }
+
+        .service-title {
+            font-size: 1.05rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .service-arrow {
+            font-size: 0.8rem;
+            color: var(--gold);
+            transform: translateX(0);
+            transition: var(--transition);
+        }
+
+        .service-item:hover .service-title {
+            color: var(--gold-dark);
+            padding-left: 10px;
+        }
+
+        .service-item:hover .service-arrow {
+            transform: translateX(8px);
+        }
+
+        /* --- 5. IMMERSIVE HERO SPLIT SHOWCASE --- */
+        .immersive-hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat fixed;
+            color: var(--bg-white);
+            padding: 140px 0;
+            text-align: center;
+        }
+
+        .imm-sub {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .imm-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .imm-desc {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            font-size: 0.95rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--bg-white);
+            background: transparent;
+            color: var(--bg-white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--bg-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- 6. LUXURY DUAL AD BANNER --- */
+        .dual-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 450px;
+        }
+
+        .banner-panel {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px;
+            background-size: cover;
+            background-position: center;
+            color: var(--bg-white);
+        }
+
+        .panel-left { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80'); }
+        .panel-right { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80'); }
+
+        .panel-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px;}
+        .panel-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin-bottom: 20px;}
+        
+        .panel-btn {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 5px;
+        }
+        .panel-btn:hover { color: var(--gold); }
+
+        /* --- 7. REFINED FLAGSHIP ATELIER SHOWCASE --- */
+        .atelier-section {
+            padding: 100px 0;
+            background-color: var(--bg-white);
+        }
+
+        .atelier-display {
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1200&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        .atelier-card {
+            background-color: var(--bg-cream);
+            padding: 40px 60px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .atelier-card h3 { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; margin-bottom: 15px;}
+        .atelier-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+
+        /* --- 8. DESIGNER CLIENTS LOGO MATRIX --- */
+        .clients-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            background-color: var(--bg-cream);
+        }
+
+        .clients-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            opacity: 0.7;
+        }
+
+        .client-logo {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- 9. ARCHITECTURAL MINIMALIST FOOTER --- */
+        .footer {
+            background-color: #111111;
+            color: #CCCCCC;
+            padding: 100px 0 40px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .footer-header {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--bg-white);
+            margin-bottom: 25px;
+        }
+
+        .footer-contact-link {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--bg-white);
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .footer-contact-link:hover {
+            color: var(--gold);
+        }
+
+        .footer-detail {
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 2;
+            color: #999999;
+        }
+
+        .footer-nav-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-nav-list a {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #999999;
+        }
+
+        .footer-nav-list a:hover {
+            color: var(--bg-white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222222;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #666666;
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 992px) {
+            .hero-section, .about-grid, .services-grid, .dual-banner, .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .nav-menu { display: none; } /* Add hamburger toggle infrastructure in production */
+            .dual-banner { height: auto; }
+            .banner-panel { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">The Design Company</a>
+            
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active">Home</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Services</a></li>
+                <li><a href="#" class="nav-link">Fragrances</a></li>
+                <li><a href="#" class="nav-link">Apparel</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-utilities">
+                <div class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="nav-icon"><i class="fa-regular fa-user"></i></div>
+                <div class="nav-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-indicator">3</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container hero-section">
+        <div class="hero-text-side">
+            <h1 class="hero-title">Fashion<br>meets<br><span>fragrance</span>.</h1>
+            <a href="#" class="scroll-indicator">
+                <i class="fa-solid fa-arrow-down-long"></i>
+            </a>
+        </div>
+        <div class="hero-mosaic-side">
+            <div class="mosaic-img m-1"></div>
+            <div class="mosaic-img m-2"></div>
+            <div class="mosaic-img m-3"></div>
+            <div class="mosaic-img m-4"></div>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container about-grid">
+            <div class="about-statement">
+                "We are a modern fashion and fragrance brand dedicated to helping individuals look <span>stylish</span> and feel <span>confident</span> every day."
+            </div>
+            <div class="about-details">
+                <p>From trendy fashion collections to long-lasting colognes, we bring together quality, creativity, and structural sophistication into every piece we manufacture.</p>
+                <div class="about-row-img">
+                    <div class="about-img" style="background-image: url('https://images.unsplash.com/photo-1479064555552-3ef4979f8908?auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="about-img" style="background-image: url('https://images.unsplash.com/photo-1509319117193-57bab727e09d?auto=format&fit=crop&w=400&q=80');"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container services-section">
+        <h2 class="section-header">Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <span class="service-title">Luxury Perfume Sales</span>
+                <i class="fa-solid fa-arrow-right-long " class="service-arrow"></i>
+            </div>
+            <div class="service-item">
+                <span class="service-title">Online Shopping & Delivery</span>
+                <i class="fa-solid fa-arrow-right-long" class="service-arrow"></i>
+            </div>
+            <div class="service-item">
+                <span class="service-title">Gift Packaging Services</span>
+                <i class="fa-solid fa-arrow-right-long" class="service-arrow"></i>
+            </div>
+            <div class="service-item">
+                <span class="service-title">Custom Orders</span>
+                <i class="fa-solid fa-arrow-right-long" class="service-arrow"></i>
+            </div>
+            <div class="service-item">
+                <span class="service-title">Personal Style Consultation</span>
+                <i class="fa-solid fa-arrow-right-long" class="service-arrow"></i>
+            </div>
+            <div class="service-item">
+                <span class="service-title">Premium Fashion Collection</span>
+                <i class="fa-solid fa-arrow-right-long" class="service-arrow"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="immersive-hero">
+        <div class="container">
+            <p class="imm-sub">For Him. For Her.</p>
+            <h2 class="imm-title">Style That Defines You</h2>
+            <p class="imm-desc">Discover luxury fragrances and premium clothing designed for confidence, elegance, and effortless prestige.</p>
+            <div class="btn-group">
+                <button class="btn btn-primary">Shop Collection</button>
+                <button class="btn btn-secondary">Explore Fragrances</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="dual-banner">
+        <div class="banner-panel panel-left">
+            <span class="panel-tag">Signature Scents</span>
+            <h3 class="panel-title">Luxury Fragrances</h3>
+            <a href="#" class="panel-btn">Discover More</a>
+        </div>
+        <div class="banner-panel panel-right">
+            <span class="panel-tag">Atelier Apparel</span>
+            <h3 class="panel-title">Premium Clothing</h3>
+            <a href="#" class="panel-btn">View Wardrobe</a>
+        </div>
+    </section>
+
+    <section class="atelier-section">
+        <div class="container">
+            <div class="atelier-display">
+                <div class="atelier-card">
+                    <h3>The Flagship Atelier</h3>
+                    <p>Experience our masterfully crafted world of style in person. Walk through physical sensory profiles tailored dynamically to complete your presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="clients-section">
+        <div class="container">
+            <div class="clients-grid">
+                <span class="client-logo">Spring</span>
+                <span class="client-logo">Future</span>
+                <span class="client-logo">Minimalist</span>
+                <span class="client-logo">Harmonious</span>
+                <span class="client-logo">Smart Studio</span>
+                <span class="client-logo">Wardrobe</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h4 class="footer-header">Get In Touch</h4>
+                <a href="mailto:email">devanstuarts@gmail.com</a></a>
+                <p class="footer-detail">+256767909794</p>
+                <pD&N FASHION STORES</p>
+            </div>
+            <div>
+                <h4 class="footer-header">Navigation</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Shop Brand</a></li>
+                    <li><a href="#">Fragrance Curator</a></li>
+                    <li><a href="#">Story & Vision</a></li>
+                    <li><a href="#">Journal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-header">Support</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#">Shipping & Tracking</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Privacy Framework</a></li>
+                    <li><a href="#">FAQS</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© 2026 The Design Company. All Rights Reserved.</span>
+            <span>Crafted for Prestige.</span>
+        </div>
+    </footer>
+
+</body>
+</html>
